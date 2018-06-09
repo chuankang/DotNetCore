@@ -1,15 +1,23 @@
-﻿using System;
+﻿using AutoMapper;
+using DotNetCore.Interface;
+using DotNetCore.Models;
+using DotNetCore.Mvc.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DotNetCore.Mvc.Models;
 
 namespace DotNetCore.Mvc.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserService _userService;
+
+        public HomeController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -32,6 +40,18 @@ namespace DotNetCore.Mvc.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetUserList()
+        {
+            var userList = await _userService.GetUserListAsync();
+
+            Mapper.Initialize(x => x.CreateMap<User, UserViewModel>());
+
+            var userViewModels = Mapper.Map<List<User>, List<UserViewModel>>(userList);
+
+            return Json(userViewModels);
         }
     }
 }

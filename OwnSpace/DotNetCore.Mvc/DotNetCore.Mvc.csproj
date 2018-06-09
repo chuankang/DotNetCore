@@ -5,12 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetCore.Common\DotNetCore.Common.csproj" />
+    <ProjectReference Include="..\DotNetCore.Interface\DotNetCore.Interface.csproj" />
+    <ProjectReference Include="..\DotNetCore.Repositories\DotNetCore.Repositories.csproj" />
+    <ProjectReference Include="..\DotNetCore.Services\DotNetCore.Services.csproj" />
   </ItemGroup>
 
 </Project>
