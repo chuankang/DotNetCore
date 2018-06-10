@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using DotNetCore.Common;
 using DotNetCore.Interface;
 using DotNetCore.Models;
-using DotNetCore.Repositories.DbContexts;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DotNetCore.Repositories
 {
     public class UserRepository : IUserRepository
     {
-
         public async Task<List<User>> GetUserListAsync()
         {
             using (var conn = DataBaseConfig.GetSqlConnection())
