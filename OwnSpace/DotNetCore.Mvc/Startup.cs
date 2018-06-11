@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetCore.Common;
+using DotNetCore.Mvc.AutoMapper;
 using DotNetCore.Repositories.DbContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,8 +24,11 @@ namespace DotNetCore.Mvc
         {
             Configuration = configuration;
 
-            //读取数据库连接配置文件1
-            var config = new ConfigurationBuilder()
+			//AutoMapper静态方法初始化
+			AutoMapperConfig.CreateMappings();
+
+			//读取数据库连接配置文件1
+			var config = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)

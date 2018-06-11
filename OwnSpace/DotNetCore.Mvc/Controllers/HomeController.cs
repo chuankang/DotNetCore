@@ -47,8 +47,6 @@ namespace DotNetCore.Mvc.Controllers
         {
             var userList = await _userService.GetUserListAsync();
 
-            Mapper.Initialize(x => x.CreateMap<User, UserViewModel>());
-
             var userViewModels = Mapper.Map<List<User>, List<UserViewModel>>(userList);
 
             return Json(userViewModels);
