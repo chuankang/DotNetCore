@@ -9,6 +9,8 @@ namespace DotNetCore.Repositories.DbContexts
         {
         }
 
-        public DbSet<User> Users { get; set; }
-    }
+        //public DbSet<User> Users { get; set; }
+
+	    public DbSet<Transaction> Transactions { get; set; }
+	}
 }
