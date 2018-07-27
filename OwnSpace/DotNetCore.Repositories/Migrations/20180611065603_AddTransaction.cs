@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
-using System.Collections.Generic;
 
 namespace DotNetCore.Repositories.Migrations
 {
-    public partial class AddTransaction : Migration
+	public partial class AddTransaction : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
