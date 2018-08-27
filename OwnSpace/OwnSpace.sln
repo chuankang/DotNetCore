@@ -5,15 +5,19 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Mvc", "DotNetCore.Mvc\DotNetCore.Mvc.csproj", "{9E48F3EA-02DD-4D46-97DF-0AB75D23AD81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.Services", "DotNetCore.Services\DotNetCore.Services.csproj", "{90AEC331-5B5F-4AD9-9CBB-6B5CBAFC6A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Services", "DotNetCore.Services\DotNetCore.Services.csproj", "{90AEC331-5B5F-4AD9-9CBB-6B5CBAFC6A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.Repositories", "DotNetCore.Repositories\DotNetCore.Repositories.csproj", "{33BDD53C-719B-4F5C-AD29-A074AF5553BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Repositories", "DotNetCore.Repositories\DotNetCore.Repositories.csproj", "{33BDD53C-719B-4F5C-AD29-A074AF5553BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.Interface", "DotNetCore.Interface\DotNetCore.Interface.csproj", "{D00EC609-AE60-4D5B-9645-3E1FBFDF66CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Interface", "DotNetCore.Interface\DotNetCore.Interface.csproj", "{D00EC609-AE60-4D5B-9645-3E1FBFDF66CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.Common", "DotNetCore.Common\DotNetCore.Common.csproj", "{F27923AE-F5E7-4D7D-9567-076EEEE1DA46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Common", "DotNetCore.Common\DotNetCore.Common.csproj", "{F27923AE-F5E7-4D7D-9567-076EEEE1DA46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.Models", "DotNetCore.Models\DotNetCore.Models.csproj", "{E06167AC-3115-435E-BF43-9FE8230BFD57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Models", "DotNetCore.Models\DotNetCore.Models.csproj", "{E06167AC-3115-435E-BF43-9FE8230BFD57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore2Mvc", "NetCore2Mvc\NetCore2Mvc.csproj", "{07E5BECA-48E2-45BB-97B3-E73B9E9B767A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CD6B97C9-633E-4581-87BA-1ED82B5476F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{E06167AC-3115-435E-BF43-9FE8230BFD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E06167AC-3115-435E-BF43-9FE8230BFD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E06167AC-3115-435E-BF43-9FE8230BFD57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E5BECA-48E2-45BB-97B3-E73B9E9B767A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E5BECA-48E2-45BB-97B3-E73B9E9B767A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E5BECA-48E2-45BB-97B3-E73B9E9B767A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E5BECA-48E2-45BB-97B3-E73B9E9B767A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD6B97C9-633E-4581-87BA-1ED82B5476F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6B97C9-633E-4581-87BA-1ED82B5476F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6B97C9-633E-4581-87BA-1ED82B5476F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6B97C9-633E-4581-87BA-1ED82B5476F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
