@@ -1,0 +1,91 @@
+﻿{
+
+  "ReRoutes": [
+
+    {
+
+      "DownstreamPathTemplate": "/demoaapi/values",
+
+      "DownstreamScheme": "http",
+
+      "DownstreamPort": 5001,
+
+      "DownstreamHost": "localhost",
+
+      "UpstreamPathTemplate": "/demoaapi/values",
+
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "QoSOptions": {
+
+        "ExceptionsAllowedBeforeBreaking": 3,
+
+        "DurationOfBreak": 10,
+
+        "TimeoutValue": 5000
+
+      },
+
+      "HttpHandlerOptions": {
+
+        "AllowAutoRedirect": false,
+
+        "UseCookieContainer": false
+
+      },
+
+      "AuthenticationOptions": {
+
+        "AuthenticationProviderKey": "",
+
+        "AllowedScopes": []
+
+      }
+
+    },
+
+    {
+
+      "DownstreamPathTemplate": "/demobapi/values",
+
+      "DownstreamScheme": "http",
+
+      "DownstreamPort": 5002,
+
+      "DownstreamHost": "localhost",
+
+      "UpstreamPathTemplate": "/demobapi/values",
+
+      "UpstreamHttpMethod": [ "Get" ],
+
+      "QoSOptions": {
+
+        "ExceptionsAllowedBeforeBreaking": 3,
+
+        "DurationOfBreak": 10,
+
+        "TimeoutValue": 5000
+
+      },
+
+      "HttpHandlerOptions": {
+
+        "AllowAutoRedirect": false,
+
+        "UseCookieContainer": false
+
+      },
+
+      "AuthenticationOptions": {
+
+        "AuthenticationProviderKey": "",
+
+        "AllowedScopes": []
+
+      }
+
+    }
+
+  ]
+
+}
