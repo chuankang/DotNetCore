@@ -16,21 +16,20 @@ namespace OcelotGateway
             IWebHostBuilder builder = new WebHostBuilder();
 
             //注入WebHostBuilder
-          var x = builder.ConfigureServices(service =>
-                {
-                    service.AddSingleton(builder);
-                })
+            return builder.ConfigureServices(service =>
+                  {
+                      service.AddSingleton(builder);
+                  })
 
-                //加载configuration配置文件
-                .ConfigureAppConfiguration(conbuilder =>
-                {
-                    conbuilder.AddJsonFile("configuration.json");
-                })
-                .UseKestrel()
-                .UseUrls("http://*:5000")
-                .UseStartup<Startup>()
-                .Build();
-            return x;
+                  //加载configuration配置文件
+                  .ConfigureAppConfiguration(conbuilder =>
+                  {
+                      conbuilder.AddJsonFile("configuration.json");
+                  })
+                  .UseKestrel()
+                  .UseUrls("http://*:5000")
+                  .UseStartup<Startup>()
+                  .Build();
         }
     }
 }

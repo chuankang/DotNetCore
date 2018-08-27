@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoAAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("demoaapi/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -14,7 +14,7 @@ namespace DemoAAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "ApiA", "value2" };
         }
 
         // GET api/values/5

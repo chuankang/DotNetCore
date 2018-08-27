@@ -1,18 +1,32 @@
 ﻿{
   "ReRoutes": [
     {
+      /*将用户的请求 /post/1 转发到 localhost/api/post/1*/
+
+      //转到的地址
       "DownstreamPathTemplate": "/demoaapi/values",
+      //转到的请求协议
       "DownstreamScheme": "http",
       //"DownstreamPort": 5001,
       //"DownstreamHost": "localhost",
+      //转到的端口地址及端口信息
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5001
         }
       ],
+      //监听路由地址
       "UpstreamPathTemplate": "/demoaapi/values",
+      //监听路由请求类型 可用数组
       "UpstreamHttpMethod": [ "Get" ],
+
+      /*
+   服务质量与熔断:熔断的意思是停止将请求转发到下游服务。当下游服务已经出现故障的时候再请求也是功而返，并且增加下游服务器和API网关的负担。这个功能是用的Pollly来实现的，我们只需要为路由做一些简单配置即可
+   ExceptionsAllowedBeforeBreaking 允许多少个异常请求
+   DurationOfBreak 熔断的时间，单位为秒
+   TimeoutValue 如果下游请求的处理时间超过多少则自如将请求设置为超时
+   */
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10,
