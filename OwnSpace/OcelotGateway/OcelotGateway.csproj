@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Content Update="configuration.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

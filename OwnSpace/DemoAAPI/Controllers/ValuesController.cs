@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoAAPI.Controllers
 {
-    [Route("demoaapi/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {

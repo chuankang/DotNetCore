@@ -4,7 +4,7 @@
       /*将用户的请求 /post/1 转发到 localhost/api/post/1*/
 
       //转到的地址
-      "DownstreamPathTemplate": "/demoaapi/values",
+      "DownstreamPathTemplate": "/api/Values",
       //转到的请求协议
       "DownstreamScheme": "http",
       //"DownstreamPort": 5001,
@@ -17,7 +17,7 @@
         }
       ],
       //监听路由地址
-      "UpstreamPathTemplate": "/demoaapi/values",
+      "UpstreamPathTemplate": "/api/Values",
       //监听路由请求类型 可用数组
       "UpstreamHttpMethod": [ "Get" ],
 
@@ -30,22 +30,24 @@
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10,
-        "TimeoutValue": 5000
-      },
-
-      "HttpHandlerOptions": {
-        "AllowAutoRedirect": false,
-        "UseCookieContainer": false
-      },
-
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "",
-        "AllowedScopes": []
+        "TimeoutValue": 6000
       }
+      //,
+
+      //"HttpHandlerOptions": {
+      //  "AllowAutoRedirect": false,
+      //  "UseCookieContainer": false
+      //},
+
+      ////路由模板中的AuthenticationOptions进行配置，只需要我们的AuthenticationProviderKey一致即可。
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "TestKey",
+      //  "AllowedScopes": []
+      //}
     },
 
     {
-      "DownstreamPathTemplate": "/demobapi/values",
+      "DownstreamPathTemplate": "/api/Products",
       "DownstreamScheme": "http",
       //"DownstreamPort": 5002,
       //"DownstreamHost": "localhost",
@@ -55,24 +57,29 @@
           "Port": 5002
         }
       ],
-      "UpstreamPathTemplate": "/demobapi/values",
+      "UpstreamPathTemplate": "/api/Products",
 
       "UpstreamHttpMethod": [ "Get" ],
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 3,
         "DurationOfBreak": 10,
-        "TimeoutValue": 5000
-      },
-
-      "HttpHandlerOptions": {
-        "AllowAutoRedirect": false,
-        "UseCookieContainer": false
-      },
-
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "",
-        "AllowedScopes": []
+        "TimeoutValue": 6000
       }
+      //,
+
+      //"HttpHandlerOptions": {
+      //  "AllowAutoRedirect": false,
+      //  "UseCookieContainer": false
+      //},
+
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "TestKey",
+      //  "AllowedScopes": []
+      //}
     }
-  ]
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/admin"
+  }
 }
