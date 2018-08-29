@@ -87,9 +87,39 @@
 {
   "ReRoutes": [
     {
-      //监听路由地址
-      //"UpstreamPathTemplate": "/api/values",
+      "DownstreamPathTemplate": "/DemoAAPI/swagger.json",
+      "DownstreamScheme": "http",
+      //"ServiceName": "userapi",
+      //"LoadBalancer": "RoundRobin",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UseServiceDiscovery": false,
       "UpstreamPathTemplate": "/DemoAAPI/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DemoBAPI/swagger.json",
+      "DownstreamScheme": "http",
+      //"ServiceName": "basedataapi",
+      //"LoadBalancer": "RoundRobin",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UseServiceDiscovery": false,
+      "UpstreamPathTemplate": "/DemoBAPI/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+
+    {
+      //监听路由地址
+      "UpstreamPathTemplate": "/api/values",
       //转到的端口地址及端口信息
       "DownstreamHostAndPorts": [
         {
@@ -98,8 +128,7 @@
         }
       ],
       //转到的地址
-      //"DownstreamPathTemplate": "/api/values",
-      "DownstreamPathTemplate": "/DemoAAPI/swagger.json",
+      "DownstreamPathTemplate": "/api/values",
 
       //监听路由请求类型 可用数组
       "UpstreamHttpMethod": [ "Get", "Put", "Post" ],
@@ -150,8 +179,7 @@
 
     {
       //监听路由地址
-      //"UpstreamPathTemplate": "/Product",
-      "UpstreamPathTemplate": "/DemoBAPI/swagger.json",
+      "UpstreamPathTemplate": "/api/Products/GetId",
       //转到的端口地址及端口信息
       "DownstreamHostAndPorts": [
         {
@@ -160,8 +188,7 @@
         }
       ],
       //转到的地址
-      //"DownstreamPathTemplate": "/api/Products/GetId",
-      "DownstreamPathTemplate": "/DemoBAPI/swagger.json",
+      "DownstreamPathTemplate": "/api/Products/GetId",
       //监听路由请求类型 可用数组
       "UpstreamHttpMethod": [ "Get" ],
       "AddHeadersToRequest": {},

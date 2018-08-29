@@ -29,7 +29,7 @@ namespace DemoAAPI
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("DemoAAPI", new Info { Title = "用户API接口", Version = "v1" });
+                options.SwaggerDoc("DemoAAPI", new Info { Title = "用户API接口A", Version = "v1" });
                 //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var basePath = AppContext.BaseDirectory;
                 var xmlPath = Path.Combine(basePath, "DemoAAPI.xml");
