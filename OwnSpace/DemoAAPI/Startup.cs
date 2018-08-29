@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace DemoAAPI
 {
@@ -25,6 +27,15 @@ namespace DemoAAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("DemoAAPI", new Info { Title = "用户API接口", Version = "v1" });
+                //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "DemoAAPI.xml");
+                options.IncludeXmlComments(xmlPath);
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -41,7 +52,14 @@ namespace DemoAAPI
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc().UseSwagger(c =>
+                {
+                    c.RouteTemplate = "{documentName}/swagger.json";
+                })
+                .UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/DemoAAPI/swagger.json", "DemoAAPI");
+                });
         }
     }
 }

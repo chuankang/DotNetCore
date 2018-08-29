@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace OcelotGateway
 {
@@ -27,10 +29,30 @@ namespace OcelotGateway
             //注入配置文件，AddOcelot要求参数是IConfigurationRoot类型，所以要作个转换
 
             services.AddOcelot(Configuration as ConfigurationRoot);
+
+
+            //swagger
+            services.AddMvc();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("ApiGateway", new Info { Title = "网关服务", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //swagger
+            var apis = new List<string> { "DemoAApi", "DemoBApi" };
+            app.UseMvc()
+                .UseSwagger()
+                .UseSwaggerUI(options =>
+                {
+                    apis.ForEach(m =>
+                    {
+                        options.SwaggerEndpoint($"/{m}/swagger.json", m);
+                    });
+                });
+
             //添加中间件
             app.UseOcelot().Wait();
         }

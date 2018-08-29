@@ -88,7 +88,8 @@
   "ReRoutes": [
     {
       //监听路由地址
-      "UpstreamPathTemplate": "/api/values",
+      //"UpstreamPathTemplate": "/api/values",
+      "UpstreamPathTemplate": "/DemoAAPI/swagger.json",
       //转到的端口地址及端口信息
       "DownstreamHostAndPorts": [
         {
@@ -97,7 +98,9 @@
         }
       ],
       //转到的地址
-      "DownstreamPathTemplate": "/api/values",
+      //"DownstreamPathTemplate": "/api/values",
+      "DownstreamPathTemplate": "/DemoAAPI/swagger.json",
+
       //监听路由请求类型 可用数组
       "UpstreamHttpMethod": [ "Get", "Put", "Post" ],
       "AddHeadersToRequest": {},
@@ -147,7 +150,8 @@
 
     {
       //监听路由地址
-      "UpstreamPathTemplate": "/Product",
+      //"UpstreamPathTemplate": "/Product",
+      "UpstreamPathTemplate": "/DemoBAPI/swagger.json",
       //转到的端口地址及端口信息
       "DownstreamHostAndPorts": [
         {
@@ -156,7 +160,8 @@
         }
       ],
       //转到的地址
-      "DownstreamPathTemplate": "/api/Products/GetId",
+      //"DownstreamPathTemplate": "/api/Products/GetId",
+      "DownstreamPathTemplate": "/DemoBAPI/swagger.json",
       //监听路由请求类型 可用数组
       "UpstreamHttpMethod": [ "Get" ],
       "AddHeadersToRequest": {},
