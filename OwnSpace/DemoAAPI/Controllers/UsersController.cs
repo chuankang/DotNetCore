@@ -8,7 +8,7 @@ namespace DemoAAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UsersController : ControllerBase
     {
         // GET api/values
         /// <summary>
@@ -22,10 +22,10 @@ namespace DemoAAPI.Controllers
 
         // GET api/values/5
         /// <summary>
-        /// 有参Get请求
+        /// 获取用户名接口
         /// </summary>
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{GetUserName}")]
+        public ActionResult<string> GetUserName(int id)
         {
             return "张三";
         }
