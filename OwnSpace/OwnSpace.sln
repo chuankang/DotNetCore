@@ -19,11 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore2Mvc", "NetCore2Mvc\
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CD6B97C9-633E-4581-87BA-1ED82B5476F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotGateway", "OcelotGateway\OcelotGateway.csproj", "{C47C0FF1-58D0-4AF3-A977-E200EA2F8191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotGateway", "OcelotGateway\OcelotGateway.csproj", "{C47C0FF1-58D0-4AF3-A977-E200EA2F8191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAAPI", "DemoAAPI\DemoAAPI.csproj", "{0B92B4EF-42F0-4FAC-9217-7453FBEDFACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoAAPI", "DemoAAPI\DemoAAPI.csproj", "{0B92B4EF-42F0-4FAC-9217-7453FBEDFACE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoBAPI", "DemoBAPI\DemoBAPI.csproj", "{27AD0C61-577F-4E60-B9B2-5C6B0D587202}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoBAPI", "DemoBAPI\DemoBAPI.csproj", "{27AD0C61-577F-4E60-B9B2-5C6B0D587202}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.ConsoleApp", "..\DotNetCore.Console\DotNetCore.ConsoleApp.csproj", "{E39CF5E8-2624-49A1-94DA-8C8D496C3685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{27AD0C61-577F-4E60-B9B2-5C6B0D587202}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27AD0C61-577F-4E60-B9B2-5C6B0D587202}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27AD0C61-577F-4E60-B9B2-5C6B0D587202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E39CF5E8-2624-49A1-94DA-8C8D496C3685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E39CF5E8-2624-49A1-94DA-8C8D496C3685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E39CF5E8-2624-49A1-94DA-8C8D496C3685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E39CF5E8-2624-49A1-94DA-8C8D496C3685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
