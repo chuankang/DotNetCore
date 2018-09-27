@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Polly;
+using Snowflake.Core;
 
 namespace DotNetCore.ConsoleApp
 {
@@ -15,7 +16,14 @@ namespace DotNetCore.ConsoleApp
             //TestPolly();
 
             //.NET Core中的性能测试工具BenchmarkDotnet
-            var summary = BenchmarkRunner.Run<Md5VsSha256>();
+            //var summary = BenchmarkRunner.Run<Md5VsSha256>();
+
+            //雪花算法
+            //IdWorker 应该实例化一次。否则，将会重复
+            var worker = new IdWorker(1, 1);
+            long id = worker.NextId();
+
+
             Console.ReadLine();
         }
 
