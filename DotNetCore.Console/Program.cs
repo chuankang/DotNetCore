@@ -20,9 +20,12 @@ namespace DotNetCore.ConsoleApp
 
             //雪花算法
             //IdWorker 应该实例化一次。否则，将会重复
-            var worker = new IdWorker(1, 1);
-            long id = worker.NextId();
+            //var worker = new IdWorker(1, 1);
+            //long id = worker.NextId();
 
+            //值元组
+            var testTuple = TestTupleValue();
+            var age = testTuple.age;
 
             Console.ReadLine();
         }
@@ -56,6 +59,15 @@ namespace DotNetCore.ConsoleApp
         {
             var a = 0;
             return 1 / a;
+        }
+
+        /// <summary>
+        /// 值元组 Framework4.7 C#7.0
+        /// </summary>
+        /// <returns></returns>
+        public static (int age, string name) TestTupleValue()
+        {
+            return (18, "张三");
         }
     }
 
@@ -115,4 +127,6 @@ namespace DotNetCore.ConsoleApp
             return _md5.ComputeHash(_data);
         }
     }
+
+
 }
