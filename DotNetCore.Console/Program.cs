@@ -65,6 +65,48 @@ namespace DotNetCore.ConsoleApp
             return 1 / a;
         }
 
+        #region C#6.0
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void TestInter(string name)
+        {
+            var x = "conn";
+            //1.字符串嵌入值(String interpolation) 
+            Console.WriteLine($"name:{x}");
+
+            //2.空值运算符(Null-conditional operators)
+            var account = new Account();
+            var age = account.AgeList?[0].ToString();
+
+            //3.对象初始化器(Index Initializers)
+            IDictionary<int, string> dict = new Dictionary<int, string>()
+            {
+                [1] = "first",
+                [2] = "second"
+            };
+            foreach (var dic in dict)
+            {
+                Console.WriteLine($"key: {dic.Key} value:{dic.Value}");
+            }
+
+            if (name == null)
+            {
+                //5.nameof表达式 (nameof expressions)
+                throw new ArgumentNullException(nameof(name));
+            }
+        }
+
+        ////4.导入静态类(Using Static)
+        //using static System.Math;//注意这里不是命名空间哦
+        //Console.WriteLine($"之前的使用方式: {Math.Pow(4, 2)}");
+        //Console.WriteLine($"导入后可直接使用方法: {Pow(4,2)}");
+
+        #endregion
+
+        #region C#7.0
+
         /// <summary>
         /// 值元组 Framework4.7 C#7.0
         /// </summary>
@@ -103,14 +145,16 @@ namespace DotNetCore.ConsoleApp
         /// </summary>
         private static void TestFunc()
         {
-            int sum = Add(100,200);
+            int sum = Add(100, 200);
 
             int Add(int a, int b)
             {
                 return a + b;
             }
-            
+
         }
+
+        #endregion
     }
 
     public class SingleVsFirst
@@ -168,5 +212,19 @@ namespace DotNetCore.ConsoleApp
         {
             return _md5.ComputeHash(_data);
         }
+    }
+
+    /// <summary>
+    /// C#6.0自动属性初始化
+    /// </summary>
+    public class Account
+    {
+        public string Name { get; set; } = "summit";
+        public int Age { get; set; } = 22;
+        public IList<int> AgeList
+        {
+            get;
+            set;
+        } = new List<int> { 10, 20, 30, 40, 50 };
     }
 }
