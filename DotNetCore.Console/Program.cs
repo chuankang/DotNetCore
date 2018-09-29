@@ -23,17 +23,21 @@ namespace DotNetCore.ConsoleApp
             //var worker = new IdWorker(1, 1);
             //long id = worker.NextId();
 
-            //值元组
-            var testTuple = TestTupleValue();
-            var age = testTuple.age;
+            ////值元组
+            //var testTuple = TestTupleValue();
+            //var age = testTuple.age;
+            //解构元组
+            //(int age, string name) = TestTupleValue();
+            //var x = age;
 
+            TestLocals();
             Console.ReadLine();
         }
 
         /// <summary>
         /// Polly重试机制
         /// </summary>
-        public static void TestPolly()
+        private static void TestPolly()
         {
             try
             {
@@ -55,7 +59,7 @@ namespace DotNetCore.ConsoleApp
             }
         }
 
-        static int Compute()
+        private static int Compute()
         {
             var a = 0;
             return 1 / a;
@@ -64,10 +68,48 @@ namespace DotNetCore.ConsoleApp
         /// <summary>
         /// 值元组 Framework4.7 C#7.0
         /// </summary>
-        /// <returns></returns>
-        public static (int age, string name) TestTupleValue()
+        private static (int age, string name) TestTupleValue()
         {
             return (18, "张三");
+        }
+
+        /// <summary>
+        /// C# 7.0 匹配模式
+        /// </summary>
+        private static void TestPattern(object obj)
+        {
+            if (obj is int b) //is判断
+            {
+                int d = b + 10; //加10
+                Console.WriteLine(d); //输出
+            }
+        }
+
+        /// <summary>
+        /// C# 7.0局部变量
+        /// </summary>
+        private static void TestLocals()
+        {
+            int x = 3;
+            ref int x1 = ref x;//通过ref关键字 把x赋值给x1
+            x1 = 2;
+            //我们通过ref关键字把x赋给了x1,如果是值类型的传递,那么对x将毫无影响 还是输出3.
+            //好处不言而喻,在某些特定的场合,我们可以直接用ref来引用传递,减少了值传递所需要开辟的空间.
+            Console.WriteLine($"改变后的变量{nameof(x)}值为{x}");//输出值为2
+        }
+
+        /// <summary>
+        /// C# 7.0局部函数
+        /// </summary>
+        private static void TestFunc()
+        {
+            int sum = Add(100,200);
+
+            int Add(int a, int b)
+            {
+                return a + b;
+            }
+            
         }
     }
 
@@ -127,6 +169,4 @@ namespace DotNetCore.ConsoleApp
             return _md5.ComputeHash(_data);
         }
     }
-
-
 }
