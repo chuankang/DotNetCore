@@ -30,7 +30,7 @@ namespace DotNetCore.ConsoleApp
             //(int age, string name) = TestTupleValue();
             //var x = age;
 
-            TestLocals();
+            //TestLocals();
             Console.ReadLine();
         }
 
