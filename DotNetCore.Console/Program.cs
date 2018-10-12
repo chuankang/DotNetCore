@@ -65,6 +65,12 @@ namespace DotNetCore.ConsoleApp
             return 1 / a;
         }
 
+        private static Tuple<int, int, int, int, int, int, int> Tuple4()
+        {
+            return new Tuple<int, int, int, int, int, int, int>(1,1,1,1,1,1,1);
+        }
+
+
         #region C#6.0
 
         /// <summary>
