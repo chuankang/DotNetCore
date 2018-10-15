@@ -22,7 +22,7 @@
                     methods: {
                         GetTest: function () {
                             AJAX.get('/Home/GetTest', { 'Id': 1 }).done((res) => {
-                                app2.$data.todos=res.data;
+                                this.todos = res.data;
                             });
                         }
                     }

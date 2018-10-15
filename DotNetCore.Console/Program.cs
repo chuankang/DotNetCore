@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
+using System.Xml;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Polly;
@@ -13,6 +15,35 @@ namespace DotNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
+            #region LINQ TO XML
+
+            Book[] books = new Book[]
+            {
+                new Book{Title = "Java",Publisher = "manming",Year = 2018},
+                new Book{Title = "C#",Publisher = "manming",Year = 2020},
+                new Book{Title = "SQL",Publisher = "manming",Year = 2020},
+            };
+            XmlDocument doc = new XmlDocument();
+
+            XmlElement root = doc.CreateElement("books");
+            foreach (var book in books)
+            {
+                if (book.Year ==2020)
+                {
+                    XmlElement element = doc.CreateElement("book");
+                    element.SetAttribute("title", book.Title);
+                    XmlElement publisher = doc.CreateElement("publisher");
+                    publisher.InnerText = book.Publisher;
+                    element.AppendChild(publisher);
+                    root.AppendChild(element);
+                }
+
+                doc.AppendChild(root);
+                doc.Save(Console.Out);
+            }
+
+            #endregion
+
             //TestPolly();
 
             //.NET Core中的性能测试工具BenchmarkDotnet
@@ -67,7 +98,7 @@ namespace DotNetCore.ConsoleApp
 
         private static Tuple<int, int, int, int, int, int, int> Tuple4()
         {
-            return new Tuple<int, int, int, int, int, int, int>(1,1,1,1,1,1,1);
+            return new Tuple<int, int, int, int, int, int, int>(1, 1, 1, 1, 1, 1, 1);
         }
 
 
@@ -232,5 +263,12 @@ namespace DotNetCore.ConsoleApp
             get;
             set;
         } = new List<int> { 10, 20, 30, 40, 50 };
+    }
+
+    public class Book
+    {
+        public string Title { get; set; }
+        public string Publisher { get; set; }
+        public int Year { get; set; }
     }
 }
