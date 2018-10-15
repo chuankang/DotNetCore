@@ -6,7 +6,8 @@
         urlArgs: 'v=180524',
         //配置路径
         paths: {
-            'Vue': 'Vue'
+            'Vue': 'Vue',
+            'AJAX': 'components/ajax'
         },
         shim: {
             'Vue': {

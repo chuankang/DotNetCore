@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using DotNetCore.Interface;
 using DotNetCore.Models;
 using DotNetCore.Mvc.Models;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using DotNetCore.Models.Basic;
 
 namespace DotNetCore.Mvc.Controllers
 {
@@ -50,6 +52,24 @@ namespace DotNetCore.Mvc.Controllers
             var userViewModels = Mapper.Map<List<User>, List<UserViewModel>>(userList);
 
             return Json(userViewModels);
+        }
+
+        [HttpGet]
+        public JsonResult GetTest(int id)
+        {
+            var list = new List<UserViewModel>
+            {
+                new UserViewModel {UserName = "张三", Birthday = "2018-10-10"},
+                new UserViewModel {UserName = "李四", Birthday = "2018-10-11"}
+            };
+
+            var ret = new ResultEntity<List<UserViewModel>>
+            {
+                Code = 0,
+                Data = list
+            };
+
+            return Json(ret);
         }
     }
 }

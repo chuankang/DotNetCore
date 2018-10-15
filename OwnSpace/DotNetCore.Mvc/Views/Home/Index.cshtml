@@ -5,5 +5,13 @@
 <div id="app">
     {{message}}
 </div>
+<div id="app-4">
+    <ol>
+        <li style="color: red" v-for="todo in todos">
+            {{ todo.userName }}
+            {{ todo.birthday }}
+        </li>
+    </ol>
+</div>
 
 <script data-main="/js/test.js" src="/js/require.js"></script>
