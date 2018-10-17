@@ -15,35 +15,6 @@ namespace DotNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
-            #region LINQ TO XML
-
-            Book[] books = new Book[]
-            {
-                new Book{Title = "Java",Publisher = "manming",Year = 2018},
-                new Book{Title = "C#",Publisher = "manming",Year = 2020},
-                new Book{Title = "SQL",Publisher = "manming",Year = 2020},
-            };
-            XmlDocument doc = new XmlDocument();
-
-            XmlElement root = doc.CreateElement("books");
-            foreach (var book in books)
-            {
-                if (book.Year ==2020)
-                {
-                    XmlElement element = doc.CreateElement("book");
-                    element.SetAttribute("title", book.Title);
-                    XmlElement publisher = doc.CreateElement("publisher");
-                    publisher.InnerText = book.Publisher;
-                    element.AppendChild(publisher);
-                    root.AppendChild(element);
-                }
-
-                doc.AppendChild(root);
-                doc.Save(Console.Out);
-            }
-
-            #endregion
-
             //TestPolly();
 
             //.NET Core中的性能测试工具BenchmarkDotnet
