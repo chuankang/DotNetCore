@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
@@ -8,6 +9,9 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Polly;
 using Snowflake.Core;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace DotNetCore.ConsoleApp
 {
@@ -15,6 +19,18 @@ namespace DotNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
+            //读取数据库连接配置文件1
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+            var appConfigProvider = new ServiceCollection().AddOptions().Configure<AppConfigurations>
+                (config.GetSection("ConnectionStrings")).BuildServiceProvider();
+            var appConfigurations = appConfigProvider.GetService<IOptions<AppConfigurations>>().Value;
+
+            Console.WriteLine(appConfigurations.DefaultConnection);
+
             //TestPolly();
 
             //.NET Core中的性能测试工具BenchmarkDotnet

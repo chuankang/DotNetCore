@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <StartupObject>DotNetCore.ConsoleApp.NewProgram</StartupObject>
+    <StartupObject>DotNetCore.ConsoleApp.Program</StartupObject>
     <ApplicationIcon />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>1</Description>
@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.11.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
     <PackageReference Include="Polly" Version="6.1.0" />
     <PackageReference Include="Snowflake.Core" Version="2.0.0" />
   </ItemGroup>

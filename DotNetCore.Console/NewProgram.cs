@@ -2,10 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace DotNetCore.ConsoleApp
 {
@@ -13,26 +18,9 @@ namespace DotNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
-
-            TestLinq();
-
-            Func<int, bool> isOdd = i => (i & 1) == 1;
-            Expression<Func<int, bool>> isOddExpression = i => (i & 1) == 1;
-
-            for (var i = 0; i < 10; i++)
-            {
-                if (isOdd(i))
-                {
-                    Console.WriteLine(i + " is odd");
-                }
-                else
-                {
-                    Console.WriteLine(i + " is even");
-                }
-
-            }
             Console.ReadLine();
         }
+        
 
         private static void LinqToXml()
         {
@@ -123,9 +111,17 @@ namespace DotNetCore.ConsoleApp
             ArrayList arrayList = new ArrayList();
             //Cast操作符，让ArrayList与LINQ集成起来
             var a = arrayList.Cast<Books>().Where(t => t.Publisher == "");
-            
 
         }
+
+        public static void Func()
+        {
+            Func<string, string> Cast = s => s.ToUpper();
+
+            string name = "james";
+            Console.WriteLine(Cast(name));
+        }
+
     }
 
     public class Books
