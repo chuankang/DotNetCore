@@ -1,8 +1,0 @@
-Default:
-  RequestUrlHost: &1875238246 ~
-  RequestUrlPrefix: ~
-  DatabaseProvider: SqlConnection
-  TablePrefix: dbo
-  ConnectionString: Data Source = .\SQLEXPRESS ; Initial Catalog = fundmanagement_ceiam ; User Id = sa; Password = 123456
-  State: Running
-...
