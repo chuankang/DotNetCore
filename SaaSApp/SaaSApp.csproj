@@ -11,9 +11,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="OrchardCore.Application.Cms.Targets" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Application.Mvc.Targets" Version="1.0.0-beta2-67846" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OwnSpace\ModuleWeb\ModuleWeb.csproj" />
     <ProjectReference Include="..\OwnSpace\SaaS.Services\SaaS.Services.csproj" />
   </ItemGroup>
 

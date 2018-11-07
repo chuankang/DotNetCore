@@ -15,7 +15,7 @@ namespace SaaS.Services
             {
                 new PermissionStereotype
                 {
-                    Name="Administrator",
+                    Name="Administrator",//"Administrator",Authenticated
                     Permissions = new[]{WechatSettings}
                 }
             };

@@ -38,6 +38,8 @@ namespace SaaSApp
                 options.Password.RequiredLength = 6;
 
             });
+
+            //services.AddModules();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +51,8 @@ namespace SaaSApp
             }
 
             app.UseOrchardCore();
+
+            //app.UseModules();
         }
     }
 }
