@@ -6,7 +6,7 @@ namespace DotNetCore.Models.Basic
 	public class EntityBase<T>
 	{
 		[Key]
-		public T ID { get; set; }
+		public T Id { get; set; }
 
 		public DateTime TimeStamp { get; set; } = DateTime.Now;
 

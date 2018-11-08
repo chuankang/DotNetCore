@@ -11,7 +11,11 @@
         }
       ],
       "UpstreamPathTemplate": "/webapia/values", //上游路径
-      "UpstreamHttpMethod": [ "Get" ] //上游使用的http方法，该部分为一个数组，包含若干个http方法，配置中使用的为get方法
+      "UpstreamHttpMethod": [ "Get" ], //上游使用的http方法，该部分为一个数组，包含若干个http方法，配置中使用的为get方法
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/values",

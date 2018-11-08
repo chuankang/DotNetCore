@@ -11,7 +11,7 @@ namespace WebApiB.Controllers
         [HttpGet]
         public string Count()
         {
-            return $"Count {++_count} from WebapiB";
+            return $"Count {++_count} from WebapiB,B接口";
         }
     }
 }

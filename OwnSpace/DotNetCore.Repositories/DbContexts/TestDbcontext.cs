@@ -12,5 +12,8 @@ namespace DotNetCore.Repositories.DbContexts
         //public DbSet<User> Users { get; set; }
 
 	    public DbSet<Transaction> Transactions { get; set; }
-	}
+
+        //会员基础信息
+        public DbSet<BasicInfomation> BasicInfomation { get; set; }
+    }
 }
