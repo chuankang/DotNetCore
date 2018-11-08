@@ -15,5 +15,13 @@ namespace WebApiB.Controllers
         {
             return new string[] { "value1 from webapi B", "value2 from webapi B" };
         }
+
+
+
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            return $"value {id} from WebApiB";
+        }
     }
 }

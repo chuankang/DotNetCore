@@ -15,5 +15,11 @@ namespace WebApiA.Controllers
         {
             return new string[] { "value1 from webapi A", "value2 from webapi A" };
         }
+
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return $"value {id} from WebApiA";
+        }
     }
 }
