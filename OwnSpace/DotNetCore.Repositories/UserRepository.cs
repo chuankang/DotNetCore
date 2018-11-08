@@ -3,6 +3,7 @@ using DotNetCore.Common;
 using DotNetCore.Interface;
 using DotNetCore.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,12 +15,23 @@ namespace DotNetCore.Repositories
         {
             using (var conn = DataBaseConfig.GetSqlConnection())
             {
-                const string insertSql = @"SELECT UserName, Birthday FROM dbo.[User]";
+                const string sql = @"SELECT Name AS UserName, 
+                                                  Birthday 
+                                           FROM dbo.BasicInfomation";
 
-                var usetList = await conn.QueryAsync<User>(insertSql);
+                var usetList = await conn.QueryAsync<User>(sql);
 
                 return usetList.ToList();
             }
+        }
+
+        public string GetAddressByName(string name)
+        {
+            const string sql = @"SELECT Address
+                                 FROM dbo.BasicInfomation 
+                                 WHERE Name = @name";
+
+            return SqlHelper.Query<string>(sql,new{name}).FirstOrDefault();
         }
     }
 }

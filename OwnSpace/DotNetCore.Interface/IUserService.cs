@@ -7,5 +7,6 @@ namespace DotNetCore.Interface
     public interface IUserService
     {
         Task<List<User>> GetUserListAsync();
+        string GetAddressByName(string name);
     }
 }

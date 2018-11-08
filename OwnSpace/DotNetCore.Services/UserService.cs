@@ -8,6 +8,7 @@ namespace DotNetCore.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -15,7 +16,12 @@ namespace DotNetCore.Services
 
         public async Task<List<User>> GetUserListAsync()
         {
-            return await  _userRepository.GetUserListAsync();
+            return await _userRepository.GetUserListAsync();
+        }
+
+        public string GetAddressByName(string name)
+        {
+            return _userRepository.GetAddressByName(name);
         }
     }
 }

@@ -90,6 +90,28 @@
       "ServiceName": "Count", //指定服务发现的服务名称，在之后Consul中注册服务的时候会用到，consul安装目录下的json中配置
       "LoadBalancer": "RoundRobin", //指定使用的负载均衡模式
       "UseServiceDiscovery": true //标志使用服务发现。
+    },
+
+    //使用consul服务发现
+    {
+      "DownstreamPathTemplate": "/api/User/GetUserList",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/user1",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "ServiceName": "User",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true
+    },
+
+    //使用consul服务发现
+    {
+      "DownstreamPathTemplate": "/api/User/GetAddressByName",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/adress",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "ServiceName": "User",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true
     }
 
   ],
