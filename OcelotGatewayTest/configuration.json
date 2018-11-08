@@ -75,6 +75,17 @@
       "UpstreamPathTemplate": "/Age",
       "UpstreamHttpMethod": [ "Get" ],
       "Key": "Age"
+    },
+
+    //使用consul服务发现
+    {
+      "DownstreamPathTemplate": "/api/Counter/Count",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/count",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ServiceName": "Count", //指定服务发现的服务名称，在之后Consul中注册服务的时候会用到，consul安装目录下的json中配置
+      "LoadBalancer": "RoundRobin", //指定使用的负载均衡模式
+      "UseServiceDiscovery": true //标志使用服务发现。
     }
 
   ],
@@ -87,5 +98,15 @@
       ],
       "UpstreamPathTemplate": "/GetUserInfo"
     }
-  ]
+  ],
+  //Consul服务发现 根节点添加全局配置
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      //端口
+      "Port": 8500,
+      //由Consul提供服务发现
+      "Type": "Consul"
+    }
+  }
 }
