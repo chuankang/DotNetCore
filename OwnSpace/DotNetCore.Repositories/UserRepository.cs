@@ -15,7 +15,8 @@ namespace DotNetCore.Repositories
             using (var conn = DataBaseConfig.GetSqlConnection())
             {
                 const string sql = @"SELECT Name AS UserName, 
-                                            Birthday 
+                                             
+Birthday 
                                      FROM dbo.BasicInfomation";
 
                 var usetList = await conn.QueryAsync<User>(sql);
