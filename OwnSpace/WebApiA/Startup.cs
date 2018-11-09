@@ -1,4 +1,5 @@
-﻿using DotNetCore.Common;
+﻿using System;
+using DotNetCore.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.IO;
+using Swashbuckle.AspNetCore.Swagger;
 using WebApiA.Basic;
 
 namespace WebApiA
@@ -37,6 +39,15 @@ namespace WebApiA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("WebApiA", new Info { Title = "用户API接口A", Version = "v1" });
+                //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "WebApiA.xml");
+                options.IncludeXmlComments(xmlPath);
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //依赖注入
             DependencyInjection.Initialize(services);
@@ -54,7 +65,14 @@ namespace WebApiA
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc().UseSwagger(c =>
+                {
+                    c.RouteTemplate = "{documentName}/swagger.json";
+                })
+                .UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/WebApiA/swagger.json", "WebApiA");
+                });
         }
     }
 }

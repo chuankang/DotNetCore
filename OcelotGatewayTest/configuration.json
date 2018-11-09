@@ -80,6 +80,33 @@
       "UpstreamHttpMethod": [ "Get" ],
       "Key": "Age"
     },
+    //Swagger
+    {
+      "DownstreamPathTemplate": "/WebApiA/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UseServiceDiscovery": false,
+      "UpstreamPathTemplate": "/WebApiA/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/WebApiB/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UseServiceDiscovery": false,
+      "UpstreamPathTemplate": "/WebApiB/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
 
     //使用consul服务发现
     {

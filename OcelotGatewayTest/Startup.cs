@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace OcelotGatewayTest
 {
@@ -46,11 +47,30 @@ namespace OcelotGatewayTest
                     x.Authority = "test";
                     x.Audience = "test";
                 });
+
+            //swagger
+            services.AddMvc();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("ApiGateway", new Info { Title = "网关服务", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //swagger
+            var apis = new List<string> { "WebApiA", "WebApiB" };
+            app.UseMvc()
+                .UseSwagger()
+                .UseSwaggerUI(options =>
+                {
+                    apis.ForEach(m =>
+                    {
+                        options.SwaggerEndpoint($"/{m}/swagger.json", m);
+                    });
+                });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
