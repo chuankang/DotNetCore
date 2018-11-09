@@ -1,4 +1,5 @@
 ﻿using DotNetCore.Models;
+using DotNetCore.Models.Team;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCore.Repositories.DbContexts
@@ -15,5 +16,10 @@ namespace DotNetCore.Repositories.DbContexts
 
         //会员基础信息
         public DbSet<BasicInfomation> BasicInfomation { get; set; }
+
+        /// <summary>
+        /// 球队
+        /// </summary>
+        public DbSet<Team> Team { get; set; }
     }
 }

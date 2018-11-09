@@ -13,9 +13,10 @@ using System;
 namespace DotNetCore.Repositories.Migrations
 {
     [DbContext(typeof(TestDbcontext))]
-    partial class TestDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20181109025852_Team")]
+    partial class Team
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
