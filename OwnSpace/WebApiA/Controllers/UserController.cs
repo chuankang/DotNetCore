@@ -35,6 +35,9 @@ namespace WebApiA.Controllers
             return 0;
         }
 
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
         [HttpGet]
         public async Task<JsonResult> GetUserList()
         {
