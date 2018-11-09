@@ -3,7 +3,6 @@ using DotNetCore.Common;
 using DotNetCore.Interface;
 using DotNetCore.Models;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,8 +15,8 @@ namespace DotNetCore.Repositories
             using (var conn = DataBaseConfig.GetSqlConnection())
             {
                 const string sql = @"SELECT Name AS UserName, 
-                                                  Birthday 
-                                           FROM dbo.BasicInfomation";
+                                            Birthday 
+                                     FROM dbo.BasicInfomation";
 
                 var usetList = await conn.QueryAsync<User>(sql);
 
@@ -31,7 +30,7 @@ namespace DotNetCore.Repositories
                                  FROM dbo.BasicInfomation 
                                  WHERE Name = @name";
 
-            return SqlHelper.Query<string>(sql,new{name}).FirstOrDefault();
+            return SqlHelper.Query<string>(sql, new { name }).FirstOrDefault();
         }
     }
 }
