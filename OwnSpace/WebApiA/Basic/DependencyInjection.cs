@@ -3,7 +3,7 @@ using DotNetCore.Repositories;
 using DotNetCore.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiA
+namespace WebApiA.Basic
 {
     /// <summary>
     /// 依赖注入

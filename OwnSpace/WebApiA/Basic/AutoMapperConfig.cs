@@ -2,7 +2,7 @@
 using DotNetCore.Models;
 using System;
 
-namespace WebApiA
+namespace WebApiA.Basic
 {
     public class AutoMapperConfig
     {
