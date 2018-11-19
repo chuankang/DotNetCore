@@ -44,6 +44,7 @@ namespace DotNetCore.Mvc.Controllers
                 CaptchaByteData = new byte[2]
             };
             //设置值，默认永不过期
+            //设置过期时间，redis-server 2.8+ 才支持
             RedisHelper.Set("result", result);
             //异步操作
             //RedisHelper.SetAsync("async name", "ck async");
