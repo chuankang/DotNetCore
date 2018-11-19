@@ -2,6 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div style="height: 100px">
+
+    <div style="color: rebeccapurple">
+
+        <img id="img-captcha" data-src="~/get-captcha-image" />
+
+    </div>
+
+    <input type="text" class="form-control" placeholder="Captcha Code" maxlength="4" />
+</div>
+
 <div id="app">
     {{message}}
 </div>
@@ -15,3 +26,15 @@
 </div>
 
 <script data-main="/js/test.js" src="/js/require.js"></script>
+
+<script>
+    $("#img-captcha").click(function () {
+        resetCaptchaImage();
+    });
+    //刷新验证码
+    function resetCaptchaImage() {
+        d = new Date();
+        $("#img-captcha").attr("src", "/get-captcha-image?" + d.getTime());
+    }
+
+</script>

@@ -49,6 +49,13 @@ namespace DotNetCore.Mvc
             // Entity Framework Contexts
             var ownDbCon = _appConfigurations.DefaultConnection;
             services.AddDbContext<TestDbcontext>(options => options.UseSqlServer(ownDbCon));
+
+            //add session support 验证码
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +78,9 @@ namespace DotNetCore.Mvc
             //Middleware1 为HTTP Request 提供存取网站的文件 简单理解就是使得网站上的静态文件可访问
             app.UseStaticFiles();
 
+            //必须在usemvc之前调用。Session依赖Cookie才能工作，所以请确保用户首先接受GDPR cookie策略，这是ASP.NET Core 2.1默认模板里添加的
+            app.UseSession();
+
             //Middlerwate2  MVC routing机制。有了这两个middleware，我们的的网站就有了MVC routing和读取静态文件的功能
             app.UseMvc(routes =>
             {
@@ -78,6 +88,7 @@ namespace DotNetCore.Mvc
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+           
         }
     }
 }

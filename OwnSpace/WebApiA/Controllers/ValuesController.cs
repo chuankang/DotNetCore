@@ -25,6 +25,8 @@ namespace WebApiA.Controllers
         [HttpPost("{id2}")]
         public IEnumerable<string> GetName()
         {
+            var ss = new SortedSet<int>(Enumerable.Repeat(42, 400_000));
+
             return new string[] { "NAME A" };
         }
     }

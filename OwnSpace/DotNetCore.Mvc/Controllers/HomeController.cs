@@ -6,8 +6,10 @@ using DotNetCore.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using DotNetCore.Models.Basic;
+using Microsoft.AspNetCore.Http;
 
 namespace DotNetCore.Mvc.Controllers
 {
@@ -70,6 +72,49 @@ namespace DotNetCore.Mvc.Controllers
             };
 
             return Json(ret);
+        }
+
+        /// <summary>
+        /// 返回验证码图片
+        /// </summary>
+        /// <returns></returns>
+        [Route("get-captcha-image")]
+        public IActionResult GetCaptchaImage()
+        {
+            int width = 100;
+
+            int height = 36;
+
+            var captchaCode = Captcha.GenerateCaptchaCode();
+
+            var result = Captcha.GenerateCaptchaImage(width, height, captchaCode);
+
+            HttpContext.Session.SetString("CaptchaCode", result.CaptchaCode);
+
+            Stream s = new MemoryStream(result.CaptchaByteData);
+
+            return new FileStreamResult(s, "image/png");
+        }
+
+        /// <summary>
+        /// 验证输入的验证码是否和session中的一致
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public JsonResult Validate(CaptchaResult request)
+        {
+            if (ModelState.IsValid)
+            {
+                // Validate Captcha Code
+                if (!Captcha.ValidateCaptchaCode(request.CaptchaCode, HttpContext))
+                {
+                    // return error
+                }
+
+                // continue business logic
+            }
+
+            return null;
         }
     }
 }
