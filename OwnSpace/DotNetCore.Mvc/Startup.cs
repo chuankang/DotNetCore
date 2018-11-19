@@ -9,6 +9,8 @@ using DotNetCore.Repositories.DbContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -56,6 +58,12 @@ namespace DotNetCore.Mvc
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
             });
+
+            var csredis = new CSRedis.CSRedisClient("127.0.0.1:6379,password=,defaultDatabase=2,poolsize=10,ssl=false,writeBuffer=10240,prefix=keyTest_");
+            RedisHelper.Initialization(csredis);
+
+            //注册MVC分布式缓存
+            services.AddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
