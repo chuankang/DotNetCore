@@ -31,10 +31,19 @@ namespace DotNetCore.Mvc.Controllers
         [HttpGet]
         public JsonResult RedisTest(string name)
         {
+            var x = 12;
+            //条件编译符号
+#if DEBUG2
+            x = 13;
+#elif Test
+            x = 15;
+#else
+            x = 19
+#endif
             ////普通模式
             //var csredis = new CSRedis.CSRedisClient
             //    ("127.0.0.1:6379,defaultDatabase=0,password=,poolsize=50,ssl=false,writeBuffer=10240,prefix=keyTest_");
-            
+
             ////初始化RedisHelper
             //RedisHelper.Initialization(csredis);
 
