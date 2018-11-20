@@ -1,6 +1,7 @@
 ﻿using DotNetCore.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DotNetCore.Models.Team;
 
 namespace DotNetCore.Interface
 {
@@ -8,5 +9,6 @@ namespace DotNetCore.Interface
     {
         Task<List<User>> GetUserListAsync();
         string GetAddressByName(string name);
+        int InsertTeam(List<Team> teams);
     }
 }

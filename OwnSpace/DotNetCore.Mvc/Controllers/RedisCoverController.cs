@@ -10,7 +10,10 @@ using System.IO;
 using System.Threading.Tasks;
 using CSRedis;
 using DotNetCore.Models.Basic;
+using DotNetCore.Models.Team;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Newtonsoft.Json;
 
 namespace DotNetCore.Mvc.Controllers
 {
@@ -71,7 +74,6 @@ namespace DotNetCore.Mvc.Controllers
                 ("chan1", msg => Console.WriteLine(msg.Body)),
                 ("chan2", msg => Console.WriteLine(msg.Body)));
 
-
             //发布
             RedisHelper.Publish("chan1", "123123123");
 
@@ -82,6 +84,31 @@ namespace DotNetCore.Mvc.Controllers
             var get = RedisHelper.Get<CaptchaResult>("name");
 
             return null;
+        }
+
+        /// <summary>
+        /// csredis测试发布订阅
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult RedisSubAndPub()
+        {
+            var teamList = new List<Team>();
+
+            for (var i = 0; i < 5; i++)
+            {
+                var team = new Team
+                {
+                    Address = "shanghai" + i,
+                    CreatedTime = DateTime.Now,
+                    DeleteState = 1,
+                    Name = "james" + i
+                };
+                teamList.Add(team);
+            }
+            _userService.InsertTeam(teamList);
+
+            return Json(null);
         }
     }
 }

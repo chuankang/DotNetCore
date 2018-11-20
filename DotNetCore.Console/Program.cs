@@ -19,17 +19,17 @@ namespace DotNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //读取数据库连接配置文件1
-            var config = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .Build();
-            var appConfigProvider = new ServiceCollection().AddOptions().Configure<AppConfigurations>
-                (config.GetSection("ConnectionStrings")).BuildServiceProvider();
-            var appConfigurations = appConfigProvider.GetService<IOptions<AppConfigurations>>().Value;
+            ////读取数据库连接配置文件1
+            //var config = new ConfigurationBuilder()
+            //    .AddInMemoryCollection()
+            //    .SetBasePath(Directory.GetCurrentDirectory())
+            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //    .Build();
+            //var appConfigProvider = new ServiceCollection().AddOptions().Configure<AppConfigurations>
+            //    (config.GetSection("ConnectionStrings")).BuildServiceProvider();
+            //var appConfigurations = appConfigProvider.GetService<IOptions<AppConfigurations>>().Value;
 
-            Console.WriteLine(appConfigurations.DefaultConnection);
+            //Console.WriteLine(appConfigurations.DefaultConnection);
 
             //TestPolly();
 
@@ -49,6 +49,7 @@ namespace DotNetCore.ConsoleApp
             //var x = age;
 
             //TestLocals();
+            TestCSRedis();
             Console.ReadLine();
         }
 
@@ -179,6 +180,26 @@ namespace DotNetCore.ConsoleApp
         }
 
         #endregion
+
+        private static void TestCSRedis()
+        {
+            //普通订阅
+            RedisHelper.Subscribe(
+                ("chan1", msg => Console.WriteLine(msg.Body)),
+                ("chan2", msg => Console.WriteLine(msg.Body)));
+
+            //模式订阅（通配符）
+            RedisHelper.PSubscribe(new[] { "test*", "*test001", "test*002" }, msg => {
+                Console.WriteLine($"PSUB   {msg.MessageId}:{msg.Body}    {msg.Pattern}: chan:{msg.Channel}");
+            });
+            //模式订阅已经解决的难题：
+            //1、分区的节点匹配规则，导致通配符最大可能匹配全部节点，所以全部节点都要订阅
+            //2、本组 "test*", "*test001", "test*002" 订阅全部节点时，需要解决同一条消息不可执行多次
+
+            //发布
+            RedisHelper.Publish("chan1", "123123123");
+            RedisHelper.Publish("chan2", "test3123");
+        }
     }
 
     public class SingleVsFirst

@@ -39,6 +39,13 @@ namespace DotNetCore.Common
             return conn;
         }
 
+        public static SqlConnection GetConnection()
+        {
+            var conn = new SqlConnection(AppConfigurations?.DefaultConnection);
+            conn.Open();
+            return conn;
+        }
+
         #endregion
     }
 }

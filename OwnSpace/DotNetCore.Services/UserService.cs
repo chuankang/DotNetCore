@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DotNetCore.Interface;
 using DotNetCore.Models;
+using DotNetCore.Models.Team;
 
 namespace DotNetCore.Services
 {
@@ -22,6 +23,11 @@ namespace DotNetCore.Services
         public string GetAddressByName(string name)
         {
             return _userRepository.GetAddressByName(name);
+        }
+
+        public int InsertTeam(List<Team> teams)
+        {
+            return _userRepository.InsertTeam(teams);
         }
     }
 }
