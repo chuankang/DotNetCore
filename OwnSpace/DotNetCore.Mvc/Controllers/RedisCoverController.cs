@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using CSRedis;
+using DotNetCore.Common;
 using DotNetCore.Models.Basic;
 using DotNetCore.Models.Team;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +42,7 @@ namespace DotNetCore.Mvc.Controllers
 #elif Test
             x = 15;
 #else
-            x = 19
+            x = 19;
 #endif
             ////普通模式
             //var csredis = new CSRedis.CSRedisClient
@@ -93,21 +94,6 @@ namespace DotNetCore.Mvc.Controllers
         [HttpGet]
         public JsonResult RedisSubAndPub()
         {
-            var teamList = new List<Team>();
-
-            for (var i = 0; i < 5; i++)
-            {
-                var team = new Team
-                {
-                    Address = "shanghai" + i,
-                    CreatedTime = DateTime.Now,
-                    DeleteState = 1,
-                    Name = "james" + i
-                };
-                teamList.Add(team);
-            }
-            _userService.InsertTeam(teamList);
-
             return Json(null);
         }
     }

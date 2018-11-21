@@ -98,5 +98,30 @@ namespace DotNetCore.Common.Utils
         }
 
         #endregion
+
+        /// <summary>
+        /// DataTable行转列
+        /// </summary>
+        public static DataTable RowToColumn<T>(DataTable dt,T t)
+        {
+            DataTable dtNew = new DataTable();
+            PropertyInfo[] propertyInfos = typeof(T).GetProperties();
+            foreach (var property in propertyInfos)
+            {
+                dtNew.Columns.Add(property.Name, typeof(double));
+            }
+
+            foreach (DataColumn dc in dt.Columns)
+            {
+                DataRow drNew = dtNew.NewRow();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    drNew[i + 1] = dt.Rows[i][dc].ToString();
+                }
+                dtNew.Rows.Add(drNew);
+            }
+
+            return dtNew;
+        }
     }
 }

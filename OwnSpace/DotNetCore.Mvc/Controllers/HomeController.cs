@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
+using DotNetCore.Common;
 using DotNetCore.Models.Basic;
 using Microsoft.AspNetCore.Http;
+using DotNetCore.Models.Team;
 
 namespace DotNetCore.Mvc.Controllers
 {
@@ -112,6 +115,43 @@ namespace DotNetCore.Mvc.Controllers
                 }
 
                 // continue business logic
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        [HttpGet]
+        public JsonResult BulkInsert()
+        {
+            var teamList = new List<Team>();
+
+            for (var i = 0; i < 5; i++)
+            {
+                var team = new Team
+                {
+                    Address = "shanghai" + i,
+                    CreatedTime = "2018-11-21".ToDateTime(),
+                    DeleteState = 1,
+                    Name = "james" + i
+                };
+                teamList.Add(team);
+            }
+            _userService.InsertTeam(teamList);
+
+            return Json(null);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> Test()
+        {
+            var url = "https://www.baidu.com";
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(new Uri(url));
+                string result = response.Content.ReadAsStringAsync().Result;
             }
 
             return null;

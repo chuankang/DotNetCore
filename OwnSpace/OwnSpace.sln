@@ -39,11 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleWeb", "ModuleWeb\Modu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ocelot", "Ocelot", "{B296ACB7-A4A4-4D03-A86A-287E91DD3170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotGatewayTest", "..\OcelotGatewayTest\OcelotGatewayTest.csproj", "{871E99EC-ECB0-4468-8FA7-BAC3B2106836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotGatewayTest", "..\OcelotGatewayTest\OcelotGatewayTest.csproj", "{871E99EC-ECB0-4468-8FA7-BAC3B2106836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiA", "WebApiA\WebApiA.csproj", "{62107F85-D87D-4E9D-B237-748F2DE369CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiA", "WebApiA\WebApiA.csproj", "{62107F85-D87D-4E9D-B237-748F2DE369CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiB", "WebApiB\WebApiB.csproj", "{778D1276-DC17-4BBA-96A9-86288D687681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiB", "WebApiB\WebApiB.csproj", "{778D1276-DC17-4BBA-96A9-86288D687681}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
