@@ -46,9 +46,13 @@ namespace WebApiA
                 options.EnableAnnotations();
                 options.SwaggerDoc("WebApiA", new Info { Title = "用户API接口A", Version = "v1" });
                 //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var basePath = AppContext.BaseDirectory;
-                var xmlPath = Path.Combine(basePath, "WebApiA.xml");
-                options.IncludeXmlComments(xmlPath);
+                string basePath = AppContext.BaseDirectory;//Linux路径区分大小写，这里用appcontext
+                string xmlPath = Path.Combine(basePath, "WebApiA.xml");
+                //如果有xml注释文档就读取，需在项目属性生成xml
+                if (File.Exists(xmlPath))
+                {
+                    options.IncludeXmlComments(xmlPath);
+                }
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
