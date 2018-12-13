@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DotNetCore.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,8 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.IO;
+using Microsoft.Extensions.Caching.Memory;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using WebApiA.AuthHelper;
 using WebApiA.Basic;
 
 namespace WebApiA
@@ -40,20 +43,52 @@ namespace WebApiA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(options =>
+            #region swagger
+            services.AddSwaggerGen(c =>
             {
                 //启用注释nuget包
-                options.EnableAnnotations();
-                options.SwaggerDoc("WebApiA", new Info { Title = "用户API接口A", Version = "v1" });
+                c.EnableAnnotations();
+                c.SwaggerDoc("WebApiA", new Info { Title = "用户API接口A", Version = "v1" });
                 //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 string basePath = AppContext.BaseDirectory;//Linux路径区分大小写，这里用appcontext
                 string xmlPath = Path.Combine(basePath, "WebApiA.xml");
                 //如果有xml注释文档就读取，需在项目属性生成xml
                 if (File.Exists(xmlPath))
                 {
-                    options.IncludeXmlComments(xmlPath);
+                    c.IncludeXmlComments(xmlPath);
                 }
+
+                #region Token绑定到ConfigureServices
+                //添加header验证信息
+                //c.OperationFilter<SwaggerHeader>();
+                var security = new Dictionary<string, IEnumerable<string>> { { "Blog.Core", new string[] { } }, };
+                c.AddSecurityRequirement(security);
+                //方案名称“Blog.Core”可自定义，上下一致即可
+                c.AddSecurityDefinition("Blog.Core", new ApiKeyScheme
+                {
+                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入{token}\"",
+                    Name = "Authorization",//jwt默认的参数名称
+                    In = "header",//jwt默认存放Authorization信息的位置(请求头中)
+                    Type = "apiKey"
+                });
+                #endregion
             });
+            #endregion
+
+            #region Token服务注册
+            services.AddSingleton<IMemoryCache>(factory =>
+            {
+                var cache = new MemoryCache(new MemoryCacheOptions());
+                return cache;
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Client", policy => policy.RequireRole("Client").Build());
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
+                options.AddPolicy("AdminOrClient", policy => policy.RequireRole("Admin,Client").Build());
+            });
+            #endregion
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //依赖注入
@@ -72,15 +107,7 @@ namespace WebApiA
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseMvc().UseSwagger(c =>
-            //    {
-            //        c.RouteTemplate = "{documentName}/swagger.json";
-            //    })
-            //    .UseSwaggerUI(options =>
-            //    {
-            //        options.SwaggerEndpoint("/WebApiA/swagger.json", "WebApiA");
-            //    });
-
+            #region swagger
             // 启用Swagger.
             app.UseSwagger();
 
@@ -94,6 +121,11 @@ namespace WebApiA
                 //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
                 c.DocExpansion(DocExpansion.List);
             });
+
+            #endregion
+
+            //将TokenAuth注册中间件
+            app.UseMiddleware<JwtTokenAuth>();
 
             app.UseMvc();
             app.UseStaticFiles();

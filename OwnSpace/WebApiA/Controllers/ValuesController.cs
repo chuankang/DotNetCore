@@ -13,7 +13,7 @@ namespace WebApiA.Controllers
         [HttpGet]
         public IEnumerable<string> GetValue()
         {
-            return new string[] { "value1 from webapi A", "value2 from webapi A" };
+            return new[] { "value1 from webapi A", "value2 from webapi A" };
         }
 
         [HttpGet("{id}")]

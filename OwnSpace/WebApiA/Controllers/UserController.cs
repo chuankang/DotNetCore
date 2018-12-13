@@ -3,15 +3,16 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DotNetCore.Interface;
 using DotNetCore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApiA.Controllers
 {
-    [Produces("application/json")]
     [SwaggerTag("用户")]
+    [Produces("application/json")]
     [Route("api/[controller]/[action]")]
-    [ApiController]
+    [Authorize(Policy = "Admin")]//权限验证
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -24,17 +25,13 @@ namespace WebApiA.Controllers
         [HttpGet]
         public string GetSex(string name)
         {
-            if (name == "ck")
-                return "Man";
-            return "默认";
+            return name == "ck" ? "Man" : "默认";
         }
 
         [HttpGet]
         public int? GetAge(string name)
         {
-            if (name == "ck")
-                return 24;
-            return 0;
+            return name == "ck" ? 24 : 0;
         }
 
         /// <summary>
@@ -53,7 +50,7 @@ namespace WebApiA.Controllers
         [HttpGet]
         public JsonResult GetAddressByName(string name)
         {
-            var address = _userService.GetAddressByName(name);
+            string address = _userService.GetAddressByName(name);
 
             return Json(address);
         }
