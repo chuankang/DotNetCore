@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <StartupObject>DotNetCore.ConsoleApp.Program</StartupObject>
+    <StartupObject></StartupObject>
     <ApplicationIcon />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>1</Description>
