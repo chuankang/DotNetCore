@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.IO;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using WebApiA.Basic;
 
 namespace WebApiA
@@ -41,6 +42,8 @@ namespace WebApiA
         {
             services.AddSwaggerGen(options =>
             {
+                //启用注释nuget包
+                options.EnableAnnotations();
                 options.SwaggerDoc("WebApiA", new Info { Title = "用户API接口A", Version = "v1" });
                 //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var basePath = AppContext.BaseDirectory;
@@ -65,14 +68,32 @@ namespace WebApiA
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc().UseSwagger(c =>
-                {
-                    c.RouteTemplate = "{documentName}/swagger.json";
-                })
-                .UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/WebApiA/swagger.json", "WebApiA");
-                });
+            //app.UseMvc().UseSwagger(c =>
+            //    {
+            //        c.RouteTemplate = "{documentName}/swagger.json";
+            //    })
+            //    .UseSwaggerUI(options =>
+            //    {
+            //        options.SwaggerEndpoint("/WebApiA/swagger.json", "WebApiA");
+            //    });
+
+            // 启用Swagger.
+            app.UseSwagger();
+
+            // 启用中间件以提供用户界面（HTML、js、CSS等），特别是指定JSON端点。
+            app.UseSwaggerUI(c =>
+            {
+                //文档终结点
+                c.SwaggerEndpoint("/swagger/WebApiA/swagger.json", "测试接口 V1");
+                //页面头名称
+                c.DocumentTitle = "平台API";
+                //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
+                c.DocExpansion(DocExpansion.List);
+            });
+
+            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
         }
     }
 }

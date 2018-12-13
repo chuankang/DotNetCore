@@ -4,10 +4,12 @@ using AutoMapper;
 using DotNetCore.Interface;
 using DotNetCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApiA.Controllers
 {
-    //[Produces("application/json")]
+    [Produces("application/json")]
+    [SwaggerTag("用户")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : Controller
