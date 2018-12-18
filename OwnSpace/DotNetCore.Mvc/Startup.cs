@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using DotNetCore.Common;
 using DotNetCore.Mvc.AutoMapper;
+using DotNetCore.Mvc.Handler;
 using DotNetCore.Repositories.DbContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Redis;
@@ -49,7 +51,12 @@ namespace DotNetCore.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ErrorHandler>();//添加全局捕获异常
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             //依赖注入
             DependencyInjection.Initialize(services);
 
