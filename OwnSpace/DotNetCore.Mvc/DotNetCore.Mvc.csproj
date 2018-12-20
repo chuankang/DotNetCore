@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,12 +14,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="Caching.CSRedis" Version="3.0.18" />
-    <PackageReference Include="CSRedisCore" Version="3.0.20" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.6" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
-    <PackageReference Include="Senparc.Weixin.MP" Version="16.5.2.1" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Caching.CSRedis" Version="3.0.27" />
+    <PackageReference Include="CSRedisCore" Version="3.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.6.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
   </ItemGroup>
