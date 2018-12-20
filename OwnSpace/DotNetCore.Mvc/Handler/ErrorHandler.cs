@@ -16,7 +16,8 @@ namespace DotNetCore.Mvc.Handler
             context.Result = new ContentResult
             {
                 Content = $"捕捉到未处理的异常：{ex.GetType()}\nFilter已进行错误处理。",
-                //ContentType = "text/plain",
+                //加utf-8防止中文乱码  http://tool.oschina.net/commons/
+                ContentType = "text/plain;charset=utf-8",
                 StatusCode = (int)HttpStatusCode.InternalServerError
             };
             context.ExceptionHandled = true;//设置异常已经处理
