@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using WebApiA.AuthHelper;
 using WebApiA.Models;
 
 namespace WebApiA.Controllers
 {
+    [SwaggerTag("登录授权API")]
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
@@ -15,7 +17,7 @@ namespace WebApiA.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Token2")]
-        public JsonResult GetJwtStr(long id = 1, string role = "Admin")
+        public JsonResult GetJwtStr(long id = 1, string role = "")
         {
             //这里就是用户登陆以后，通过数据库去调取数据，分配权限的操作
             var tokenModel = new TokenJwt

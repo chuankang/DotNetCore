@@ -13,16 +13,24 @@ using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using WebApiA.AuthHelper;
 using WebApiA.Basic;
+using log4net.Repository;
+using log4net;
+using log4net.Config;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApiA
 {
     public class Startup
     {
         private readonly AppConfigurations _appConfigurations;
+        public static ILoggerRepository repository { get; set; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            repository = LogManager.CreateRepository("NetCoreLogRepository");
+            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
 
             //AutoMapper静态方法初始化
             AutoMapperConfig.CreateMappings();
@@ -48,7 +56,12 @@ namespace WebApiA
             {
                 //启用注释nuget包
                 c.EnableAnnotations();
-                c.SwaggerDoc("WebApiA", new Info { Title = "用户API接口A", Version = "v1" });
+                c.SwaggerDoc("v1", 
+                    new Info {
+                        Title = "平台接口API",
+                        Version = "v1",
+                        License = new License { Name = "GitHub", Url = "https://github.com/chuankang" }
+                    });
                 //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 string basePath = AppContext.BaseDirectory;//Linux路径区分大小写，这里用appcontext
                 string xmlPath = Path.Combine(basePath, "WebApiA.xml");
@@ -57,6 +70,8 @@ namespace WebApiA
                 {
                     c.IncludeXmlComments(xmlPath);
                 }
+                //忽略过时的接口不显示在swagger界面
+                c.IgnoreObsoleteActions();
 
                 #region Token绑定到ConfigureServices
                 //添加header验证信息
@@ -89,8 +104,8 @@ namespace WebApiA
             });
             #endregion
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             //依赖注入
             DependencyInjection.Initialize(services);
         }
@@ -115,7 +130,7 @@ namespace WebApiA
             app.UseSwaggerUI(c =>
             {
                 //文档终结点
-                c.SwaggerEndpoint("/swagger/WebApiA/swagger.json", "测试接口 V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "平台接口API V1");
                 //页面头名称
                 c.DocumentTitle = "平台API";
                 //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
