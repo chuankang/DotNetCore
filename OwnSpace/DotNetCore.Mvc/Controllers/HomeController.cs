@@ -33,7 +33,7 @@ namespace DotNetCore.Mvc.Controllers
 
         public IActionResult About()
         {
-            throw new Exception("测试全局捕获异常");
+            //throw new Exception("测试全局捕获异常");
             ViewData["Message"] = "Your application description page.";
 
             return View();

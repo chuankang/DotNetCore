@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Xml;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
@@ -19,6 +20,65 @@ namespace DotNetCore.ConsoleApp
     {
         static void Main(string[] args)
         {
+
+            int time = 60;
+
+            while (true)
+            {
+                Thread.Sleep(500);
+                time = time - 1;
+                Console.Write(time);
+                Thread.Sleep(500);
+                Console.Clear();
+                if (time == 50)
+                {
+                    Console.Title = "匹配模式";
+
+                    string len1 = "寒冰，亚索，德玛";
+
+                    Console.WriteLine($"请选择一个英雄：{len1}");
+                    string hero1 = Console.ReadLine();
+
+
+                    if (hero1 == "寒冰")
+                    {
+                        Console.WriteLine("你选择了ADC");
+                    }
+                    else if (hero1 == "亚索")
+                    {
+                        Console.WriteLine("你选择了刺客");
+                    }
+                    else
+                    {
+                        Console.WriteLine("默认选择");
+                    }
+                    Console.WriteLine("按回车键退出");
+                    Console.ReadLine();
+                }
+            }
+
+
+            Console.Title = "匹配模式";
+
+            string len = "寒冰，亚索，德玛";
+
+            Console.WriteLine($"请选择一个英雄：{len}");
+            string hero = Console.ReadLine();
+            
+
+            if (hero == "寒冰")
+            {
+                Console.WriteLine("你选择了ADC");
+            }
+            else if (hero == "亚索")
+            {
+                Console.WriteLine("你选择了刺客");
+            }
+            else
+            {
+                Console.WriteLine("默认选择");
+            }
+            
             ////读取数据库连接配置文件1
             //var config = new ConfigurationBuilder()
             //    .AddInMemoryCollection()
@@ -49,7 +109,8 @@ namespace DotNetCore.ConsoleApp
             //var x = age;
 
             //TestLocals();
-            TestCSRedis();
+            //TestCSRedis();
+            Console.WriteLine("按回车键退出");
             Console.ReadLine();
         }
 

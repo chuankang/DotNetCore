@@ -3,5 +3,20 @@
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<div>
+    <button id ="btn_name">执行</button>
+</div>
 
-<p>Use this area to provide additional information.</p>
+<script>
+    $("#btn_name").click(function () {
+        $.ajax({
+                type: 'get',
+                url: '/Home/GetTest?id=2',
+                success: function(data) {
+                    alert(data.data[0].userName);
+                }
+
+            });
+        });
+</script>

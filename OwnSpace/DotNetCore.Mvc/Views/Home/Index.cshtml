@@ -34,7 +34,9 @@
     //刷新验证码
     function resetCaptchaImage() {
         d = new Date();
-        $("#img-captcha").attr("src", "/get-captcha-image?" + d.getTime());
+        $("#img-captcha").attr("" +
+            "src" +
+            "", "/get-captcha-image?" + d.getTime());
     }
 
 </script>
