@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace DotNetCore.Common
 {
@@ -24,24 +25,55 @@ namespace DotNetCore.Common
 
         public static IDbConnection GetSqlConnection()
         {
-            var sqlConnectionString = AppConfigurations?.DefaultConnection;
+            IDbConnection conn;
 
-            if (string.IsNullOrWhiteSpace(sqlConnectionString))
+            if (AppConfigurations?.UseDbType == "mysql")
             {
-                sqlConnectionString = DefaultSqlConnectionString;
+                var sqlConnectionString = AppConfigurations?.MySqlConnection;
+
+                if (string.IsNullOrWhiteSpace(sqlConnectionString))
+                {
+                    sqlConnectionString = DefaultSqlConnectionString;
+                }
+                conn = new MySqlConnection(sqlConnectionString);
+                if (string.IsNullOrEmpty(conn.ConnectionString))
+                {
+                    conn.Open();
+                }
             }
-            IDbConnection conn = new SqlConnection(sqlConnectionString);
-            if (string.IsNullOrEmpty(conn.ConnectionString))
+            else
             {
-                conn.Open();
+                var sqlConnectionString = AppConfigurations?.DefaultConnection;
+
+                if (string.IsNullOrWhiteSpace(sqlConnectionString))
+                {
+                    sqlConnectionString = DefaultSqlConnectionString;
+                }
+                conn = new SqlConnection(sqlConnectionString);
+                if (string.IsNullOrEmpty(conn.ConnectionString))
+                {
+                    conn.Open();
+                }
             }
-           
             return conn;
         }
 
+        /// <summary>
+        /// sqlserver
+        /// </summary>
         public static SqlConnection GetConnection()
         {
             var conn = new SqlConnection(AppConfigurations?.DefaultConnection);
+            conn.Open();
+            return conn;
+        }
+
+        /// <summary>
+        /// mysql
+        /// </summary>
+        public static MySqlConnection GetMySql()
+        {
+            var conn = new MySqlConnection(AppConfigurations?.MySqlConnection);
             conn.Open();
             return conn;
         }
