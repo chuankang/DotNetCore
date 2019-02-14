@@ -56,9 +56,9 @@ namespace WebApiA
             {
                 //启用注释nuget包
                 c.EnableAnnotations();
-                c.SwaggerDoc("v1", 
+                c.SwaggerDoc("TB", 
                     new Info {
-                        Title = "平台接口API",
+                        Title = "淘宝聚石塔平台接口API",
                         Version = "v1",
                         License = new License { Name = "GitHub", Url = "https://github.com/chuankang" }
                     });
@@ -124,15 +124,18 @@ namespace WebApiA
 
             #region swagger
             // 启用Swagger.
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "{documentName}/swagger.json";
+            });
 
             // 启用中间件以提供用户界面（HTML、js、CSS等），特别是指定JSON端点。
             app.UseSwaggerUI(c =>
             {
                 //文档终结点
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "平台接口API V1");
+                c.SwaggerEndpoint("/TB/swagger.json", "淘宝swagger");
                 //页面头名称
-                c.DocumentTitle = "平台API";
+                c.DocumentTitle = "淘宝";
                 //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
                 c.DocExpansion(DocExpansion.List);
             });

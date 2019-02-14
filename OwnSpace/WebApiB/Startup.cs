@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.IO;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using WebApiB.Basic;
 
 namespace WebApiB
@@ -41,7 +42,12 @@ namespace WebApiB
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("WebApiB", new Info { Title = "用户API接口B", Version = "v1" });
+                options.SwaggerDoc("JD",
+                    new Info
+                    {
+                        Title = "京东宙斯平台接口API",
+                        Version = "v1"
+                    });
                 //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var basePath = AppContext.BaseDirectory;
                 var xmlPath = Path.Combine(basePath, "WebApiB.xml");
@@ -72,7 +78,12 @@ namespace WebApiB
                 })
                 .UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint("/WebApiB/swagger.json", "WebApiB");
+                    //文档终结点
+                    options.SwaggerEndpoint("/JD/swagger.json", "京东swagger");
+                    //页面头名称
+                    options.DocumentTitle = "京东";
+                    //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
+                    options.DocExpansion(DocExpansion.List);
                 });
         }
     }

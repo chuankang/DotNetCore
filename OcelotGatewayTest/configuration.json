@@ -82,7 +82,7 @@
     },
     //Swagger
     {
-      "DownstreamPathTemplate": "/WebApiA/swagger.json",
+      "DownstreamPathTemplate": "/TB/swagger.json",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -91,11 +91,11 @@
         }
       ],
       "UseServiceDiscovery": false,
-      "UpstreamPathTemplate": "/WebApiA/swagger.json",
+      "UpstreamPathTemplate": "/TB/swagger.json",
       "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
     },
     {
-      "DownstreamPathTemplate": "/WebApiB/swagger.json",
+      "DownstreamPathTemplate": "/JD/swagger.json",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -104,7 +104,7 @@
         }
       ],
       "UseServiceDiscovery": false,
-      "UpstreamPathTemplate": "/WebApiB/swagger.json",
+      "UpstreamPathTemplate": "/JD/swagger.json",
       "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
     },
 

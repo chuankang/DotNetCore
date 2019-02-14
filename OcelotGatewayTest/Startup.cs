@@ -60,7 +60,7 @@ namespace OcelotGatewayTest
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             //swagger
-            var apis = new List<string> { "WebApiA", "WebApiB" };
+            var apis = new List<string> { "TB", "JD" };
             app.UseMvc()
                 .UseSwagger()
                 .UseSwaggerUI(options =>
