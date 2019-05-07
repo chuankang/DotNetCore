@@ -11,4 +11,6 @@
 
 2018.12.04 .NET Core 2.2发布：https://blogs.msdn.microsoft.com/webdev/2018/12/04/asp-net-core-2-2-available-today/
 
+2019.05.06 .NET 5计划表：https://devblogs.microsoft.com/dotnet/introducing-net-5/
+
 Ocelot说明文档：http://ocelot.readthedocs.io/en/latest/
