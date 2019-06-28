@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using DotNetCore.Common;
+﻿using DotNetCore.Common;
 using DotNetCore.Mvc.AutoMapper;
 using DotNetCore.Mvc.Handler;
 using DotNetCore.Repositories.DbContexts;
@@ -21,6 +16,8 @@ using Senparc.CO2NET.RegisterServices;
 using Senparc.Weixin;
 using Senparc.Weixin.Entities;
 using Senparc.Weixin.RegisterServices;
+using System;
+using System.IO;
 
 namespace DotNetCore.Mvc
 {

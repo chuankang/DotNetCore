@@ -17,6 +17,7 @@ namespace DotNetCore.Mvc
 
             //Business
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IElasticsearchService, ElasticsearchService>();
         }
     }
 }
