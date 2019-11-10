@@ -13,4 +13,6 @@
 
 2019.05.06 .NET 5计划表：https://devblogs.microsoft.com/dotnet/introducing-net-5/
 
+2019.09.23  .NET Core 3.0发布：https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/
+
 Ocelot说明文档：http://ocelot.readthedocs.io/en/latest/
